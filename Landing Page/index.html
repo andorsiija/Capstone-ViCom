@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ViCom is a warm, curated home for custom art commissions.">
+  <title>ViCom | Art made personal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="ViCom home"><span class="brand-mark">V</span><span>ViCom</span></a>
+    <nav class="main-nav" aria-label="Main navigation">
+      <a href="#discover">Discover</a>
+      <a href="#how-it-works">How it works</a>
+      <a href="#artists">For artists</a>
+    </nav>
+    <div class="header-actions">
+      <button class="text-button" type="button" data-toast="Sign in is coming soon">Sign in</button>
+      <button class="outline-button" type="button" data-toast="Artist applications open soon">Join as an artist</button>
+      <button class="menu-button" type="button" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="eyebrow-line"></span> Original work, made for you</p>
+        <h1>Make room for<br><em>something</em> personal.</h1>
+        <p class="hero-description">Find an artist who gets your idea, then turn that spark into a one-of-a-kind piece worth keeping.</p>
+        <div class="hero-actions">
+          <a class="primary-button" href="#discover">Browse artists <span>↗</span></a>
+          <button class="search-button" type="button" id="hero-search"><span class="search-icon">⌕</span> Search commissions</button>
+        </div>
+        <div class="hero-proof"><div class="avatar-stack"><span class="avatar avatar-one"></span><span class="avatar avatar-two"></span><span class="avatar avatar-three"></span><span class="avatar avatar-four">+</span></div><span>12,000+ artists ready to create</span></div>
+      </div>
+      <div class="hero-art" aria-label="Featured commissioned artwork">
+        <div class="hero-image"></div>
+        <div class="art-note note-top"><span>01</span><span>Portraits with a pulse</span></div>
+        <div class="art-note note-bottom"><strong>Featured artist</strong><span>maya.illustrates</span></div>
+        <div class="scribble">✳</div>
+      </div>
+    </section>
+
+    <section class="ticker" aria-label="ViCom highlights"><div>DRAWN WITH INTENTION</div><span>✦</span><div>MADE TO LAST</div><span>✦</span><div>ONE IDEA / ONE ORIGINAL</div><span>✦</span><div>DRAWN WITH INTENTION</div></section>
+
+    <section class="discover-section" id="discover">
+      <div class="section-heading"><div><p class="eyebrow"><span class="eyebrow-line"></span> The ViCom edit</p><h2>Start with a feeling.</h2></div><p class="section-intro">From tiny sketches to show-stopping murals, there’s an artist for the idea you can’t quite put into words.</p></div>
+      <div class="discover-toolbar"><div class="category-tabs" role="tablist" aria-label="Art categories"><button class="tab active" type="button" data-category="all">All work</button><button class="tab" type="button" data-category="portrait">Portraits</button><button class="tab" type="button" data-category="illustration">Illustration</button><button class="tab" type="button" data-category="design">Design</button></div><button class="filter-button" type="button" id="filter-button">Filter <span>＋</span></button></div>
+      <div class="art-grid" id="art-grid">
+        <article class="art-card" data-category="portrait"><div class="card-image card-one"><span class="card-badge">Popular</span><button class="heart" type="button" aria-label="Save portrait" data-toast="Saved to your collection">♡</button></div><div class="card-meta"><div><h3>Quiet portraits</h3><p>by Lina Aoki</p></div><strong>from $85</strong></div></article>
+        <article class="art-card" data-category="illustration"><div class="card-image card-two"><button class="heart" type="button" aria-label="Save illustration" data-toast="Saved to your collection">♡</button></div><div class="card-meta"><div><h3>Worlds in ink</h3><p>by Theo March</p></div><strong>from $60</strong></div></article>
+        <article class="art-card" data-category="design"><div class="card-image card-three"><span class="card-badge">New</span><button class="heart" type="button" aria-label="Save design" data-toast="Saved to your collection">♡</button></div><div class="card-meta"><div><h3>Brand, but human</h3><p>by Studio Sola</p></div><strong>from $120</strong></div></article>
+      </div>
+    </section>
+
+    <section class="process-section" id="how-it-works"><div class="process-art"></div><div class="process-copy"><p class="eyebrow"><span class="eyebrow-line"></span> No awkward briefs</p><h2>Your idea,<br><em>their magic.</em></h2><p>Tell us what you’re imagining in plain language. We’ll help you find the right creative match, agree on the details, and keep the process clear from first sketch to final file.</p><a class="arrow-link" href="#discover">See how it works <span>→</span></a></div></section>
+
+    <section class="artist-cta" id="artists"><div><p class="eyebrow light"><span class="eyebrow-line"></span> Made by independent creatives</p><h2>Your next favorite<br>artist is <em>here.</em></h2></div><a class="light-button" href="#discover">Meet the artists <span>↗</span></a></section>
+  </main>
+
+  <footer class="site-footer"><a class="brand" href="#top"><span class="brand-mark">V</span><span>ViCom</span></a><span>Art for the wonderfully specific.</span><span>© 2025 ViCom</span></footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>
