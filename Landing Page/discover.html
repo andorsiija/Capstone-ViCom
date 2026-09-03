@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Discover recent uploads from independent artists on ViCom.">
+  <title>ViCom | Recent uploads</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="discover.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="ViCom home"><span class="brand-mark">V</span><span>ViCom</span></a>
+    <nav class="main-nav" aria-label="Main navigation"><a class="active" href="discover.html">Discover</a><a href="index.html#how-it-works">How it works</a><a href="index.html#artists">For artists</a></nav>
+    <div class="header-actions"><button class="text-button" type="button" data-toast="Sign in is coming soon">Sign in</button><button class="outline-button" type="button" data-toast="Artist applications open soon">Join as an artist</button></div>
+  </header>
+
+  <main>
+    <section class="discover-hero">
+      <div><p class="eyebrow"><span class="eyebrow-line"></span> Fresh from the studio</p><h1>See what artists<br>are making <em>now.</em></h1><p class="intro">A living collection of recent uploads from independent artists around the world. Find a spark, then make it yours.</p></div>
+      <div class="hero-stamp"><span>NEW</span><strong>Every day<br>something<br>original.</strong></div>
+    </section>
+
+    <section class="uploads" aria-labelledby="uploads-title">
+      <div class="section-heading"><div><p class="eyebrow"><span class="eyebrow-line"></span> The latest drops</p><h2 id="uploads-title">Recent uploads</h2></div><button class="shuffle-button" id="shuffle-button" type="button"><span aria-hidden="true">↻</span> Shuffle uploads</button></div>
+      <div class="upload-grid" id="upload-grid"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><a class="brand" href="index.html"><span class="brand-mark">V</span><span>ViCom</span></a><span>Art for the wonderfully specific.</span><span>© 2025 ViCom</span></footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="discover.js"></script>
+</body>
+</html>
