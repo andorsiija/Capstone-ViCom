@@ -25,7 +25,16 @@
 
     <section class="uploads" aria-labelledby="uploads-title">
       <div class="section-heading"><div><p class="eyebrow"><span class="eyebrow-line"></span> The latest drops</p><h2 id="uploads-title">Recent uploads</h2></div><button class="shuffle-button" id="shuffle-button" type="button"><span aria-hidden="true">↻</span> Shuffle uploads</button></div>
+      <div class="upload-filters" role="tablist" aria-label="Filter recent uploads">
+        <button class="upload-filter active" type="button" data-category="all">All work</button>
+        <button class="upload-filter" type="button" data-category="portrait">Portrait</button>
+        <button class="upload-filter" type="button" data-category="illustration">Illustration</button>
+        <button class="upload-filter" type="button" data-category="design">Design</button>
+        <button class="upload-filter" type="button" data-category="painting">Painting</button>
+        <button class="upload-filter" type="button" data-category="tattoo design">Tattoo design</button>
+      </div>
       <div class="upload-grid" id="upload-grid"></div>
+      <p class="uploads-empty" id="uploads-empty" hidden>No uploads match this filter.</p>
     </section>
   </main>
 

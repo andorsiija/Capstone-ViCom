@@ -107,9 +107,12 @@ nav a.active,nav a:hover {
   font-size:11px;
   white-space:nowrap
 }
-.mobile-menu {
+.discover-shortcut {
   display:none;
-  font-size:20px
+  color:#3f8061;
+  font-size:11px;
+  font-weight:700;
+  white-space:nowrap
 }
 .welcome {
   padding:62px 9vw 50px;
@@ -459,8 +462,8 @@ nav,.icon-button {
 .logout-button {
     display:none
   }
-.mobile-menu {
-    display:block;
+.discover-shortcut {
+  display:block;
     margin-left:auto
   }
 .welcome {
@@ -476,6 +479,9 @@ nav,.icon-button {
 .feature-band {
     margin:0 6vw;
     display:block
+  }
+.discover {
+    padding:10px 8vw 70px
   }
 .feature-copy {
     padding:38px 10%

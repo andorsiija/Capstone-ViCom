@@ -164,11 +164,34 @@ h1 em,h2 em {
   vertical-align:-2px;
   margin-right:7px
 }
+.upload-filters {
+  display:flex;
+  gap:25px;
+  overflow:auto;
+  border-bottom:1px solid #c7d8cc;
+  margin-top:42px
+}
+.upload-filter {
+  padding:0 0 14px;
+  color:#82948a;
+  font-size:12px;
+  white-space:nowrap
+}
+.upload-filter.active {
+  color:#1d3027;
+  border-bottom:2px solid #3f8061;
+  font-weight:700
+}
+.uploads-empty {
+  color:#53675b;
+  font-size:12px;
+  margin:30px 0 0
+}
 .upload-grid {
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:38px 22px;
-  margin-top:35px
+  margin-top:28px
 }
 .upload-image {
   height:310px;
@@ -385,6 +408,10 @@ h1 em,h2 em {
     font-size:11px;
     white-space:nowrap;
     margin-top:12px
+  }
+.upload-filters {
+    gap:20px;
+    margin-top:30px
   }
 .upload-grid {
     grid-template-columns:1fr;

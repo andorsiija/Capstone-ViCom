@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Discover recent uploads from ViCom artists.">
+  <title>ViCom | Discover</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="discover.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html#top" aria-label="ViCom workspace"><span class="brand-mark">V</span><span>ViCom</span></a>
+    <nav aria-label="User navigation"><a href="index.html#explore">Explore</a><a class="active" href="discover.html">Discover</a><a href="index.html#orders">My commissions</a></nav>
+    <div class="header-actions"><a class="profile-link" href="../Account%20functions/profile.html">Profile</a><button class="logout-button" id="logout" type="button">Log out</button></div>
+  </header>
+
+  <main>
+    <section class="discover-hero"><div><p class="eyebrow"><span></span> Fresh from the studio</p><h1>See what artists<br>are making <em>now.</em></h1><p class="intro">Browse recent uploads from independent artists and find the right spark for your next idea.</p></div><div class="hero-stamp"><span>FOR YOU</span><strong>Something<br>original<br>awaits.</strong></div></section>
+    <section class="uploads" aria-labelledby="uploads-title">
+      <div class="section-heading"><div><p class="eyebrow"><span></span> The latest drops</p><h2 id="uploads-title">Recent uploads</h2></div><button class="shuffle-button" id="shuffle-button" type="button"><span aria-hidden="true">↻</span> Shuffle uploads</button></div>
+      <div class="upload-filters" role="tablist" aria-label="Filter recent uploads"><button class="upload-filter active" type="button" data-category="all">All work</button><button class="upload-filter" type="button" data-category="portrait">Portrait</button><button class="upload-filter" type="button" data-category="illustration">Illustration</button><button class="upload-filter" type="button" data-category="design">Design</button><button class="upload-filter" type="button" data-category="painting">Painting</button><button class="upload-filter" type="button" data-category="tattoo design">Tattoo design</button></div>
+      <div class="upload-grid" id="upload-grid"></div><p class="uploads-empty" id="uploads-empty" hidden>No uploads match this filter.</p>
+    </section>
+  </main>
+  <footer><a class="brand" href="index.html#top"><span class="brand-mark">V</span><span>ViCom</span></a><span>Art for the wonderfully specific.</span><span>Help · Terms · Privacy</span></footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="discover.js"></script>
+</body>
+</html>
