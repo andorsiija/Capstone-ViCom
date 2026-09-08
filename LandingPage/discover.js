@@ -11,14 +11,22 @@ const grid = document.querySelector('#upload-grid');
 const toast = document.querySelector('#toast');
 let toastTimer;
 
-function getPublishedUploads() {
+async function getPublishedUploads() {
   try {
-    const database = JSON.parse(localStorage.getItem('vicom-demo-database')) || {};
-    const legacy = JSON.parse(localStorage.getItem('vicom-portfolio')) || [];
-    const portfolio = Array.isArray(database.artworks) && database.artworks.length ? database.artworks : legacy;
+    const response = await fetch('../Account%20functions/api.php?action=artworks');
+    if (!response.ok) throw new Error('Artwork API unavailable');
+    const result = await response.json();
+    const portfolio = result.artworks || [];
     return portfolio.map((work) => ({ ...work, style: 'published-upload' }));
   } catch (error) {
-    return [];
+    try {
+      const database = JSON.parse(localStorage.getItem('vicom-demo-database')) || {};
+      const legacy = JSON.parse(localStorage.getItem('vicom-portfolio')) || [];
+      const portfolio = Array.isArray(database.artworks) && database.artworks.length ? database.artworks : legacy;
+      return portfolio.map((work) => ({ ...work, style: 'published-upload' }));
+    } catch (fallbackError) {
+      return [];
+    }
   }
 }
 
@@ -26,8 +34,9 @@ function shuffled(items) {
   return [...items].sort(() => Math.random() - 0.5);
 }
 
-function renderUploads() {
-  grid.innerHTML = shuffled([...uploads, ...getPublishedUploads()]).map((upload) => `
+async function renderUploads() {
+  const publishedUploads = await getPublishedUploads();
+  grid.innerHTML = shuffled([...uploads, ...publishedUploads]).map((upload) => `
     <article class="upload-card">
       <div class="upload-image ${upload.style}"${upload.image ? ` style="background-image:url('${upload.image}')"` : ''}><span class="category">${upload.category}</span><button class="heart" type="button" aria-label="Save ${upload.title}" data-title="${upload.title}">♡</button></div>
       <div class="upload-meta"><div><h3>${upload.title}</h3><p>by ${upload.artist} · ${upload.detail}</p></div><strong>from ${upload.price}</strong></div>
@@ -47,8 +56,8 @@ function showToast(message) {
   toastTimer = setTimeout(() => toast.classList.remove('show'), 2200);
 }
 
-document.querySelector('#shuffle-button').addEventListener('click', () => {
-  renderUploads();
+document.querySelector('#shuffle-button').addEventListener('click', async () => {
+  await renderUploads();
   showToast('Fresh uploads shuffled');
 });
 document.querySelectorAll('[data-toast]').forEach((button) => button.addEventListener('click', () => showToast(button.dataset.toast)));

@@ -11,6 +11,6 @@ function filterArtists(){const term=search.value.toLowerCase();const style=docum
 chips.forEach(chip=>chip.addEventListener('click',()=>{chips.forEach(item=>item.classList.remove('active'));chip.classList.add('active');filterArtists()}));search.addEventListener('input',filterArtists);
 document.querySelectorAll('.save').forEach(button=>button.addEventListener('click',()=>{button.classList.toggle('saved');button.textContent=button.classList.contains('saved')?'♥':'♡';notify(button.classList.contains('saved')?'Artist saved':'Artist removed')}));
 document.querySelector('#bell').addEventListener('click',()=>notify('You are all caught up'));
-document.querySelector('#logout').addEventListener('click',()=>{localStorage.removeItem('vicom-session');window.location.href='../Landing%20Page/index.html'});
+document.querySelector('#logout').addEventListener('click',()=>{localStorage.removeItem('vicom-session');window.location.href='../LandingPage/index.html'});
 document.querySelector('#filter-button').addEventListener('click',()=>notify('More filters are coming soon'));
 const modal=document.querySelector('#brief-modal');document.querySelector('#brief-button').addEventListener('click',()=>{modal.classList.add('open');modal.setAttribute('aria-hidden','false')});document.querySelector('#close-modal').addEventListener('click',()=>{modal.classList.remove('open');modal.setAttribute('aria-hidden','true')});document.querySelector('#submit-brief').addEventListener('click',()=>{modal.classList.remove('open');notify('Your brief has been saved')});

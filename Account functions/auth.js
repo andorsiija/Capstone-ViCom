@@ -1,5 +1,6 @@
 const databaseKey = 'vicom-demo-database';
 const sessionKey = 'vicom-session';
+const apiUrl = 'api.php';
 const modes = {
   signin: { eyebrow: 'Welcome back', title: 'Sign in to ViCom', description: 'Continue exploring artists and managing your commissions.', submit: 'Sign in', switch: 'New to ViCom?', switchAction: 'Create an account', switchMode: 'signup' },
   signup: { eyebrow: 'Start creating', title: 'Create your account', description: 'Save artists and turn your next idea into a commission.', submit: 'Create account', switch: 'Already have an account?', switchAction: 'Sign in', switchMode: 'signin' },
@@ -31,6 +32,16 @@ function downloadDatabase(database) {
   link.download = 'database.json';
   link.click();
   URL.revokeObjectURL(link.href);
+}
+
+function cacheUser(user) {
+  const database = getDatabase();
+  database.users = database.users || [];
+  const index = database.users.findIndex((item) => item.id === user.id);
+  const cachedUser = { ...user, password: '' };
+  if (index >= 0) database.users[index] = { ...database.users[index], ...cachedUser };
+  else database.users.push(cachedUser);
+  localStorage.setItem(databaseKey, JSON.stringify(database));
 }
 
 function showToast(message) {
@@ -66,31 +77,18 @@ document.addEventListener('click', (event) => {
   if (trigger) setMode(trigger.dataset.mode);
 });
 
-form.addEventListener('submit', (event) => {
+form.addEventListener('submit', async (event) => {
   event.preventDefault();
   error.textContent = '';
   const data = new FormData(form);
   const email = data.get('email').trim().toLowerCase();
   const password = data.get('password');
-  const database = getDatabase();
-  const existingUser = database.users.find((user) => user.email === email);
-
   if (!email || !password) {
     error.textContent = 'Enter your email and password to continue.';
     return;
   }
   if (currentMode === 'signin') {
-    if (!existingUser || existingUser.password !== password) {
-      error.textContent = 'That email and password do not match our demo database.';
-      return;
-    }
-    localStorage.setItem(sessionKey, JSON.stringify({ userId: existingUser.id, email: existingUser.email, role: existingUser.role }));
-    showToast('Signed in successfully');
-    setTimeout(() => redirectFor(existingUser.role), 350);
-    return;
-  }
-  if (existingUser) {
-    error.textContent = 'An account with that email already exists. Try signing in.';
+    await submitAccount('login', { email, password });
     return;
   }
   const isArtist = currentMode === 'artist';
@@ -103,13 +101,22 @@ form.addEventListener('submit', (event) => {
     error.textContent = 'Use a password with at least 6 characters.';
     return;
   }
-  const user = { id: `user_${Date.now()}`, email, password, name, role: isArtist ? 'artist' : 'customer', specialty: isArtist ? data.get('specialty').trim() : '', createdAt: new Date().toISOString() };
-  database.users.push(user);
-  saveDatabase(database);
-  downloadDatabase(database);
-  localStorage.setItem(sessionKey, JSON.stringify({ userId: user.id, email: user.email, role: user.role }));
-  showToast(isArtist ? 'Artist profile created' : 'Account created');
-  setTimeout(() => redirectFor(user.role), 350);
+  await submitAccount('register', { email, password, name, role: isArtist ? 'artist' : 'customer', specialty: isArtist ? data.get('specialty').trim() : '' });
 });
+
+async function submitAccount(action, payload) {
+  try {
+    const response = await fetch(`${apiUrl}?action=${action}`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+    const result = await response.json();
+    if (!response.ok) throw new Error(result.error || 'Account request failed.');
+    const user = result.user;
+    cacheUser(user);
+    localStorage.setItem(sessionKey, JSON.stringify({ userId: user.id, email: user.email, role: user.role }));
+    showToast(action === 'login' ? 'Signed in successfully' : user.role === 'artist' ? 'Artist profile created' : 'Account created');
+    setTimeout(() => redirectFor(user.role), 350);
+  } catch (requestError) {
+    error.textContent = requestError.message.includes('Failed to fetch') ? 'Could not connect to XAMPP. Start Apache/MySQL and open the project through localhost.' : requestError.message;
+  }
+}
 
 setMode(currentMode);

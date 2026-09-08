@@ -1,5 +1,6 @@
 const databaseKey = 'vicom-demo-database';
 const sessionKey = 'vicom-session';
+const apiUrl = 'api.php';
 const database = getDatabase();
 const session = getSession();
 const user = database.users.find((item) => item.id === session?.userId || item.email === session?.email);
@@ -57,10 +58,10 @@ if (!user) {
 
 document.querySelector('#logout').addEventListener('click', () => {
   localStorage.removeItem(sessionKey);
-  window.location.href = '../Landing%20Page/index.html';
+  window.location.href = '../LandingPage/index.html';
 });
 
-form.addEventListener('submit', (event) => {
+form.addEventListener('submit', async (event) => {
   event.preventDefault();
   error.textContent = '';
   if (!user) return;
@@ -68,27 +69,25 @@ form.addEventListener('submit', (event) => {
   const email = document.querySelector('#email').value.trim().toLowerCase();
   const password = document.querySelector('#password').value;
   const specialty = document.querySelector('#specialty').value.trim();
-  const duplicate = database.users.find((item) => item.email === email && item.id !== user.id);
-
   if (!name || !email) {
     error.textContent = 'Name and email are required.';
-    return;
-  }
-  if (duplicate) {
-    error.textContent = 'That email is already being used by another account.';
     return;
   }
   if (password && password.length < 6) {
     error.textContent = 'Use a password with at least 6 characters.';
     return;
   }
-  user.name = name;
-  user.email = email;
-  if (user.role === 'artist') user.specialty = specialty;
-  if (password) user.password = password;
-  localStorage.setItem(databaseKey, JSON.stringify(database));
-  downloadDatabase();
-  localStorage.setItem(sessionKey, JSON.stringify({ userId: user.id, email: user.email, role: user.role }));
-  showToast('Profile updated');
-  setTimeout(() => { window.location.href = workspaceUrl(user.role); }, 350);
+  try {
+    const response = await fetch(`${apiUrl}?action=update_profile`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id: user.id, name, email, specialty, password }) });
+    const result = await response.json();
+    if (!response.ok) throw new Error(result.error || 'Profile update failed.');
+    user.name = name;
+    user.email = email;
+    if (user.role === 'artist') user.specialty = specialty;
+    localStorage.setItem(sessionKey, JSON.stringify({ userId: user.id, email: user.email, role: user.role }));
+    showToast('Profile updated');
+    setTimeout(() => { window.location.href = workspaceUrl(user.role); }, 350);
+  } catch (requestError) {
+    error.textContent = requestError.message.includes('Failed to fetch') ? 'Could not connect to XAMPP. Start Apache and open the project through localhost.' : requestError.message;
+  }
 });
