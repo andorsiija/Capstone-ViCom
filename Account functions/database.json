@@ -1,0 +1,31 @@
+{
+  "users": [
+    {
+      "id": "user_1788849993273",
+      "email": "artist@example.com",
+      "password": "secret123",
+      "name": "Test Studio",
+      "role": "artist",
+      "specialty": "Digital portrait",
+      "createdAt": "2026-09-08T06:46:33.273Z"
+    },
+    {
+      "id": "user_1788850009953",
+      "email": "customer@example.com",
+      "password": "secret123",
+      "name": "Demo Customer",
+      "role": "customer",
+      "specialty": "",
+      "createdAt": "2026-09-08T06:46:49.953Z"
+    },
+    {
+      "id": "user_1788850043513",
+      "email": "haru@gmail.com",
+      "password": "haruharu",
+      "name": "Haru Updated",
+      "role": "customer",
+      "specialty": "",
+      "createdAt": "2026-09-08T06:47:23.513Z"
+    }
+  ]
+}

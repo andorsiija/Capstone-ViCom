@@ -3,8 +3,8 @@
 }
 body {
   margin:0;
-  background:#f5f1ea;
-  color:#20201e;
+  background:#eef5ef;
+  color:#1d3027;
   font:13px 'DM Sans',Arial,sans-serif
 }
 button {
@@ -24,8 +24,8 @@ a {
   top:0;
   bottom:0;
   width:238px;
-  background:#20201e;
-  color:#f5f1ea;
+  background:#1d3027;
+  color:#eef5ef;
   padding:30px 24px;
   display:flex;
   flex-direction:column
@@ -42,7 +42,7 @@ a {
   display:block;
   font-size:7px;
   letter-spacing:.16em;
-  color:#9d968e;
+  color:#a1b3a8;
   margin-top:2px
 }
 .brand-mark {
@@ -50,7 +50,7 @@ a {
   place-items:center;
   width:29px;
   height:29px;
-  background:#e8755e;
+  background:#3f8061;
   border-radius:50% 45% 50% 42%;
   font:19px 'Playfair Display',Georgia,serif;
   transform:rotate(-10deg)
@@ -62,7 +62,7 @@ a {
   font-size:9px;
   text-transform:uppercase;
   letter-spacing:.15em;
-  color:#89817a;
+  color:#82988b;
   margin:0 0 13px
 }
 .nav-label.second {
@@ -83,12 +83,12 @@ a {
   text-align:center
 }
 .sidebar nav a.active,.sidebar nav a:hover {
-  background:#393834;
-  color:#f5f1ea
+  background:#29483a;
+  color:#eef5ef
 }
 .sidebar nav b {
   font-size:10px;
-  background:#e8755e;
+  background:#3f8061;
   color:white;
   border-radius:12px;
   padding:3px 7px;
@@ -98,7 +98,7 @@ a {
   margin-top:auto
 }
 .mini-profile {
-  border-top:1px solid #4b4945;
+  border-top:1px solid #30483b;
   padding:20px 0;
   display:flex;
   align-items:center;
@@ -110,19 +110,19 @@ a {
 }
 .mini-profile small {
   display:block;
-  color:#8e8880;
+  color:#8fa396;
   font-size:9px;
   margin-top:3px
 }
 .mini-profile>span:last-child {
   margin-left:auto;
-  color:#aaa
+  color:#a1b3a8
 }
 .mini-avatar,.client-avatar {
   display:grid;
   place-items:center;
   border-radius:50%;
-  background:#e8755e;
+  background:#3f8061;
   color:white;
   font-size:9px;
   font-weight:700;
@@ -130,8 +130,22 @@ a {
   height:32px
 }
 .sidebar-bottom button {
-  color:#aaa29a;
+  color:#a1b3a8;
   font-size:11px
+}
+.sidebar-bottom .profile-link {
+  display:block;
+  color:#a1b3a8;
+  font-size:11px;
+  margin-bottom:12px
+}
+.sidebar-bottom .logout-button {
+  border:1px solid #30483b;
+  padding:9px 11px;
+  margin-top:14px;
+  width:100%;
+  color:#eef5ef;
+  text-align:left
 }
 .workspace {
   margin-left:238px;
@@ -142,12 +156,12 @@ a {
   display:flex;
   align-items:center;
   justify-content:space-between;
-  border-bottom:1px solid #cec4b7
+  border-bottom:1px solid #c7d8cc
 }
 .kicker {
   text-transform:uppercase;
   letter-spacing:.14em;
-  color:#847b70;
+  color:#64776a;
   font-size:9px;
   font-weight:700;
   margin:0 0 12px
@@ -166,7 +180,7 @@ a {
   font-size:21px
 }
 .help-button {
-  border-bottom:1px solid #20201e;
+  border-bottom:1px solid #1d3027;
   padding-bottom:5px;
   font-size:11px
 }
@@ -180,8 +194,8 @@ a {
   padding:30px 0
 }
 .stat-card,.panel {
-  background:#fffdfa;
-  border:1px solid #cec4b7
+  background:#fbfdfb;
+  border:1px solid #c7d8cc
 }
 .stat-card {
   padding:22px;
@@ -195,21 +209,21 @@ a {
   width:39px;
   height:39px;
   border-radius:50%;
-  color:#20201e;
+  color:#1d3027;
   font-size:18px
 }
 .stat-icon.coral {
-  background:#f4b0a1
+  background:#b9d9c4
 }
 .stat-icon.yellow {
-  background:#edbd62
+  background:#d8b86a
 }
 .stat-icon.blue {
-  background:#b9d3d2
+  background:#b7d7c2
 }
 .stat-card p {
   font-size:10px;
-  color:#847b70;
+  color:#64776a;
   margin:0 0 5px
 }
 .stat-card strong {
@@ -218,7 +232,7 @@ a {
 }
 .stat-card small {
   font-size:9px;
-  color:#847b70
+  color:#64776a
 }
 .stat-card small.positive {
   color:#568c78
@@ -235,7 +249,7 @@ a {
   display:flex;
   justify-content:space-between;
   align-items:end;
-  border-bottom:1px solid #cec4b7;
+  border-bottom:1px solid #c7d8cc;
   padding-bottom:20px;
   margin-bottom:4px
 }
@@ -245,7 +259,7 @@ a {
   margin:0
 }
 .more {
-  color:#e8755e;
+  color:#3f8061;
   font-size:10px
 }
 .commission {
@@ -254,7 +268,7 @@ a {
   align-items:center;
   gap:15px;
   padding:18px 0;
-  border-bottom:1px solid #cec4b7
+  border-bottom:1px solid #c7d8cc
 }
 .client-art {
   width:48px;
@@ -276,22 +290,22 @@ a {
 }
 .commission-main p {
   font-size:10px;
-  color:#847b70;
+  color:#64776a;
   margin:4px 0 9px
 }
 .commission-main small {
   font-size:9px;
-  color:#847b70
+  color:#64776a
 }
 .progress-line {
   height:3px;
-  background:#e5dfd7;
+  background:#dfeae2;
   max-width:210px;
   margin-bottom:6px
 }
 .progress-line span {
   display:block;
-  background:#e8755e;
+  background:#3f8061;
   height:100%
 }
 .status-button {
@@ -304,55 +318,55 @@ a {
   margin-left:6px
 }
 .progress-status {
-  background:#f6e0db;
-  color:#ba5d4a
+  background:#d8eee0;
+  color:#276043
 }
 .ready-status {
-  background:#f8ebc9;
-  color:#8b6b29
+  background:#e7efd1;
+  color:#4f6f45
 }
 .count {
   font:11px 'DM Sans',Arial,sans-serif;
   vertical-align:middle;
-  color:#e8755e
+  color:#3f8061
 }
 .message-row {
   display:flex;
   align-items:center;
   gap:12px;
   padding:19px 0;
-  border-bottom:1px solid #cec4b7;
+  border-bottom:1px solid #c7d8cc;
   position:relative
 }
 .client-avatar {
   width:34px;
   height:34px;
-  background:#edbd62;
-  color:#20201e
+  background:#d8b86a;
+  color:#1d3027
 }
 .avatar-two {
-  background:#b9d3d2
+  background:#b7d7c2
 }
 .avatar-three {
-  background:#cbb2aa
+  background:#c8d8cd
 }
 .message-row strong {
   font-size:11px
 }
 .message-row p {
   font-size:10px;
-  color:#847b70;
+  color:#64776a;
   margin:4px 0
 }
 .message-row small {
-  color:#aaa197;
+  color:#a1b3a8197;
   font-size:9px
 }
 .message-row i {
   display:none;
   width:6px;
   height:6px;
-  background:#e8755e;
+  background:#3f8061;
   border-radius:50%;
   margin-left:auto
 }
@@ -366,8 +380,8 @@ a {
   margin-top:16px
 }
 .add-button {
-  background:#20201e;
-  color:#f5f1ea;
+  background:#1d3027;
+  color:#eef5ef;
   padding:10px 13px;
   font-size:10px
 }
@@ -395,7 +409,7 @@ a {
   background-image:url('https://images.unsplash.com/photo-1561214115-f2f134cc4912?w=300&q=80')
 }
 .tip-panel {
-  background:#e8755e;
+  background:#3f8061;
   color:white;
   position:relative
 }
@@ -408,7 +422,7 @@ a {
   letter-spacing:-.05em
 }
 .tip-panel em {
-  color:#edbd62;
+  color:#d8b86a;
   font-style:normal
 }
 .tip-panel>p:not(.kicker) {
@@ -429,14 +443,14 @@ a {
   right:26px;
   top:24px;
   font-size:30px;
-  color:#edbd62
+  color:#d8b86a
 }
 .toast {
   position:fixed;
   bottom:22px;
   left:calc(50% + 119px);
   transform:translate(-50%,20px);
-  background:#20201e;
+  background:#1d3027;
   color:white;
   padding:12px 17px;
   font-size:11px;

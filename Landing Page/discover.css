@@ -3,8 +3,8 @@
 }
 body {
   margin:0;
-  background:#f5f1ea;
-  color:#20201e;
+  background:#eef5ef;
+  color:#1d3027;
   font-family:'DM Sans',Arial,sans-serif;
   font-size:15px
 }
@@ -25,7 +25,7 @@ button {
   display:flex;
   align-items:center;
   justify-content:space-between;
-  border-bottom:1px solid #cec4b7
+  border-bottom:1px solid #c7d8cc
 }
 .brand {
   display:flex;
@@ -40,7 +40,7 @@ button {
   place-items:center;
   width:30px;
   height:30px;
-  background:#e8755e;
+  background:#3f8061;
   color:white;
   border-radius:50% 45% 50% 42%;
   font-family:'Playfair Display',Georgia,serif;
@@ -56,7 +56,7 @@ button {
   transition:color .2s
 }
 .main-nav a:hover,.main-nav .active {
-  color:#e8755e
+  color:#3f8061
 }
 .header-actions {
   display:flex;
@@ -65,10 +65,10 @@ button {
   font-size:13px
 }
 .text-button:hover {
-  color:#e8755e
+  color:#3f8061
 }
 .outline-button {
-  border:1px solid #20201e;
+  border:1px solid #1d3027;
   padding:11px 16px;
   border-radius:30px
 }
@@ -77,8 +77,8 @@ button {
   display:flex;
   justify-content:space-between;
   align-items:center;
-  border-bottom:1px solid #cec4b7;
-  background:#e8dfd3
+  border-bottom:1px solid #c7d8cc;
+  background:#dcebe0
 }
 .eyebrow {
   display:flex;
@@ -94,7 +94,7 @@ button {
   display:inline-block;
   width:26px;
   height:1px;
-  background:#e8755e
+  background:#3f8061
 }
 h1,h2,h3,p {
   margin-top:0
@@ -110,25 +110,25 @@ h1 {
   margin-bottom:25px
 }
 h1 em,h2 em {
-  color:#e8755e;
+  color:#3f8061;
   font-weight:600
 }
 .intro {
   max-width:430px;
   line-height:1.7;
-  color:#69635d
+  color:#53675b
 }
 .hero-stamp {
   width:170px;
   height:170px;
-  border:1px solid #e8755e;
+  border:1px solid #3f8061;
   border-radius:50%;
   display:flex;
   flex-direction:column;
   justify-content:center;
   align-items:center;
   transform:rotate(8deg);
-  color:#e8755e;
+  color:#3f8061;
   text-align:center
 }
 .hero-stamp span {
@@ -155,7 +155,7 @@ h1 em,h2 em {
   margin:0
 }
 .shuffle-button {
-  border-bottom:1px solid #20201e;
+  border-bottom:1px solid #1d3027;
   padding:0 0 8px;
   font-size:12px
 }
@@ -180,24 +180,24 @@ h1 em,h2 em {
   position:absolute
 }
 .upload-one {
-  background:linear-gradient(135deg,#c9b2a0 0 34%,#e8755e 34% 62%,#514c4a 62%)
+  background:linear-gradient(135deg,#b2c9b8 0 34%,#3f8061 34% 62%,#466052 62%)
 }
 .upload-one:before {
   width:170px;
   height:260px;
-  background:#e8dfd3;
+  background:#dcebe0;
   border-radius:50% 50% 8% 8%;
   left:25%;
   bottom:-30px;
   transform:rotate(12deg)
 }
 .upload-two {
-  background:linear-gradient(145deg,#9db8a5,#f2c56c 52%,#e8755e 52%)
+  background:linear-gradient(145deg,#8fb69d,#d8b86a 52%,#3f8061 52%)
 }
 .upload-two:before {
   width:210px;
   height:210px;
-  border:28px solid #20201e;
+  border:28px solid #1d3027;
   border-radius:50%;
   left:22%;
   top:16%;
@@ -206,53 +206,53 @@ h1 em,h2 em {
 .upload-two:after {
   width:85px;
   height:85px;
-  background:#e8755e;
+  background:#3f8061;
   left:44%;
   top:34%;
   transform:rotate(45deg)
 }
 .upload-three {
-  background:linear-gradient(120deg,#2e4d48 0 45%,#edbd62 45% 70%,#e8755e 70%)
+  background:linear-gradient(120deg,#2d5a49 0 45%,#d8b86a 45% 70%,#3f8061 70%)
 }
 .upload-three:before {
   width:260px;
   height:80px;
-  background:#f5f1ea;
+  background:#eef5ef;
   left:12%;
   top:40%;
   transform:rotate(-25deg)
 }
 .upload-four {
-  background:linear-gradient(30deg,#d6ae91,#7e9e9b 55%,#313b4b 55%)
+  background:linear-gradient(30deg,#b9d0bf,#6f9e83 55%,#3e5b4b 55%)
 }
 .upload-four:before {
   width:180px;
   height:180px;
   border-radius:50%;
-  background:#edbd62;
+  background:#d8b86a;
   left:31%;
   top:19%;
-  box-shadow:45px 58px 0 -18px #20201e
+  box-shadow:45px 58px 0 -18px #1d3027
 }
 .upload-five {
-  background:linear-gradient(155deg,#20201e 0 45%,#e8755e 45% 70%,#edbd62 70%)
+  background:linear-gradient(155deg,#1d3027 0 45%,#3f8061 45% 70%,#d8b86a 70%)
 }
 .upload-five:before {
   width:120px;
   height:260px;
-  border:7px solid #f5f1ea;
+  border:7px solid #eef5ef;
   border-radius:60% 40%;
   left:34%;
   top:10%;
   transform:rotate(35deg)
 }
 .upload-six {
-  background:linear-gradient(45deg,#edbd62 0 45%,#7b8e9a 45% 65%,#e8dfd3 65%)
+  background:linear-gradient(45deg,#d8b86a 0 45%,#708f7e 45% 65%,#dcebe0 65%)
 }
 .upload-six:before {
   width:230px;
   height:230px;
-  border:18px solid #20201e;
+  border:18px solid #1d3027;
   border-radius:50%;
   left:18%;
   top:11%
@@ -261,7 +261,7 @@ h1 em,h2 em {
   position:absolute;
   top:16px;
   left:16px;
-  background:#f5f1ea;
+  background:#eef5ef;
   padding:7px 10px;
   font-size:10px;
   text-transform:uppercase;
@@ -272,7 +272,7 @@ h1 em,h2 em {
   position:absolute;
   right:14px;
   top:12px;
-  background:#f5f1ea;
+  background:#eef5ef;
   width:34px;
   height:34px;
   border-radius:50%;
@@ -280,7 +280,7 @@ h1 em,h2 em {
   line-height:1
 }
 .heart.saved {
-  color:#e8755e
+  color:#3f8061
 }
 .upload-meta {
   display:flex;
@@ -295,7 +295,7 @@ h1 em,h2 em {
 }
 .upload-meta p {
   font-size:12px;
-  color:#69635d;
+  color:#53675b;
   margin:0;
   line-height:1.4
 }
@@ -304,16 +304,16 @@ h1 em,h2 em {
   white-space:nowrap
 }
 .site-footer {
-  border-top:1px solid #cec4b7;
+  border-top:1px solid #c7d8cc;
   padding:30px 5.5vw;
   display:flex;
   justify-content:space-between;
   align-items:center;
   font-size:12px;
-  color:#69635d
+  color:#53675b
 }
 .site-footer .brand {
-  color:#20201e;
+  color:#1d3027;
   font-size:18px
 }
 .toast {
@@ -321,8 +321,8 @@ h1 em,h2 em {
   left:50%;
   bottom:25px;
   transform:translate(-50%,20px);
-  background:#20201e;
-  color:#f5f1ea;
+  background:#1d3027;
+  color:#eef5ef;
   padding:13px 18px;
   border-radius:3px;
   font-size:12px;

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ViCom | Edit profile</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="profile.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="../Landing%20Page/index.html" aria-label="ViCom home"><span class="brand-mark">V</span><span>ViCom</span></a>
+    <a class="back-link" id="back-link" href="../Landing%20Page/index.html">Back to workspace <span>↗</span></a>
+  </header>
+  <main class="profile-layout">
+    <section class="profile-intro">
+      <p class="eyebrow"><span></span> Your account</p>
+      <h1>Make it<br><em>yours.</em></h1>
+      <p>Keep your details current so ViCom can make every commission feel personal.</p>
+      <button class="logout-link" id="logout" type="button">Log out</button>
+    </section>
+    <section class="profile-card" aria-labelledby="profile-title">
+      <p class="eyebrow"><span></span> Personal information</p>
+      <h2 id="profile-title">Edit your profile</h2>
+      <p class="form-description" id="profile-description">Update the details connected to your ViCom account.</p>
+      <form id="profile-form" novalidate>
+        <div class="field"><label for="name">Name</label><input id="name" type="text" required autocomplete="name"></div>
+        <div class="field artist-only" hidden><label for="specialty">Primary specialty</label><input id="specialty" type="text" placeholder="e.g. Portrait illustration"></div>
+        <div class="field"><label for="email">Email address</label><input id="email" type="email" required autocomplete="email"></div>
+        <div class="field"><label for="password">New password <small>optional</small></label><input id="password" type="password" minlength="6" autocomplete="new-password" placeholder="Leave blank to keep your password"></div>
+        <p class="form-error" id="form-error" role="alert"></p>
+        <button class="submit-button" type="submit">Save changes <span>↗</span></button>
+      </form>
+    </section>
+  </main>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="profile.js"></script>
+</body>
+</html>

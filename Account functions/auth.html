@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sign in or create a ViCom account.">
+  <title>ViCom | Account</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="auth.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="../Landing%20Page/index.html" aria-label="ViCom home"><span class="brand-mark">V</span><span>ViCom</span></a>
+    <a class="back-link" href="../Landing%20Page/index.html">Back to ViCom <span>↗</span></a>
+  </header>
+
+  <main class="auth-layout">
+    <section class="auth-intro">
+      <p class="eyebrow"><span></span> A home for original work</p>
+      <h1>Make room for<br><em>something</em> personal.</h1>
+      <p>Save artists, share your ideas, and keep every commission in one place.</p>
+      <div class="intro-note"><strong>Temporary demo database</strong><span>Your account is saved only in this browser for now.</span></div>
+    </section>
+
+    <section class="auth-card" aria-labelledby="form-title">
+      <div class="mode-tabs" role="tablist" aria-label="Account actions">
+        <button class="mode-tab active" type="button" data-mode="signin">Sign in</button>
+        <button class="mode-tab" type="button" data-mode="signup">Create account</button>
+        <button class="mode-tab" type="button" data-mode="artist">Join as artist</button>
+      </div>
+      <div class="form-heading">
+        <p class="eyebrow" id="form-eyebrow"><span></span> Welcome back</p>
+        <h2 id="form-title">Sign in to ViCom</h2>
+        <p id="form-description">Continue exploring artists and managing your commissions.</p>
+      </div>
+      <form id="auth-form" novalidate>
+        <div class="field artist-only" hidden>
+          <label for="artist-name">Artist or studio name</label>
+          <input id="artist-name" name="artistName" type="text" autocomplete="organization">
+        </div>
+        <div class="field name-field" hidden>
+          <label for="name">Your name</label>
+          <input id="name" name="name" type="text" autocomplete="name">
+        </div>
+        <div class="field artist-only" hidden>
+          <label for="specialty">Primary specialty</label>
+          <input id="specialty" name="specialty" type="text" placeholder="e.g. Portrait illustration">
+        </div>
+        <div class="field">
+          <label for="email">Email address</label>
+          <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+        </div>
+        <div class="field">
+          <label for="password">Password</label>
+          <input id="password" name="password" type="password" autocomplete="current-password" placeholder="At least 6 characters" minlength="6" required>
+        </div>
+        <p class="form-error" id="form-error" role="alert"></p>
+        <button class="submit-button" type="submit" id="submit-button">Sign in <span>↗</span></button>
+      </form>
+      <p class="switch-copy" id="switch-copy">New to ViCom? <button type="button" data-mode="signup">Create an account</button></p>
+    </section>
+  </main>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="auth.js"></script>
+</body>
+</html>
