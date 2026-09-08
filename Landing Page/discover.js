@@ -11,14 +11,25 @@ const grid = document.querySelector('#upload-grid');
 const toast = document.querySelector('#toast');
 let toastTimer;
 
+function getPublishedUploads() {
+  try {
+    const database = JSON.parse(localStorage.getItem('vicom-demo-database')) || {};
+    const legacy = JSON.parse(localStorage.getItem('vicom-portfolio')) || [];
+    const portfolio = Array.isArray(database.artworks) && database.artworks.length ? database.artworks : legacy;
+    return portfolio.map((work) => ({ ...work, style: 'published-upload' }));
+  } catch (error) {
+    return [];
+  }
+}
+
 function shuffled(items) {
   return [...items].sort(() => Math.random() - 0.5);
 }
 
 function renderUploads() {
-  grid.innerHTML = shuffled(uploads).map((upload) => `
+  grid.innerHTML = shuffled([...uploads, ...getPublishedUploads()]).map((upload) => `
     <article class="upload-card">
-      <div class="upload-image ${upload.style}"><span class="category">${upload.category}</span><button class="heart" type="button" aria-label="Save ${upload.title}" data-title="${upload.title}">♡</button></div>
+      <div class="upload-image ${upload.style}"${upload.image ? ` style="background-image:url('${upload.image}')"` : ''}><span class="category">${upload.category}</span><button class="heart" type="button" aria-label="Save ${upload.title}" data-title="${upload.title}">♡</button></div>
       <div class="upload-meta"><div><h3>${upload.title}</h3><p>by ${upload.artist} · ${upload.detail}</p></div><strong>from ${upload.price}</strong></div>
     </article>
   `).join('');

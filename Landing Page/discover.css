@@ -175,6 +175,11 @@ h1 em,h2 em {
   position:relative;
   overflow:hidden
 }
+.published-upload {
+  background-position:center;
+  background-size:cover;
+  background-color:#dcebe0
+}
 .upload-image:before,.upload-image:after {
   content:'';
   position:absolute
