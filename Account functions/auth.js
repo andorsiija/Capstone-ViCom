@@ -2,9 +2,9 @@ const databaseKey = 'vicom-demo-database';
 const sessionKey = 'vicom-session';
 const apiUrl = 'api.php';
 const modes = {
-  signin: { eyebrow: 'Welcome back', title: 'Sign in to ViCom', description: 'Continue exploring artists and managing your commissions.', submit: 'Sign in', switch: 'New to ViCom?', switchAction: 'Create an account', switchMode: 'signup' },
-  signup: { eyebrow: 'Start creating', title: 'Create your account', description: 'Save artists and turn your next idea into a commission.', submit: 'Create account', switch: 'Already have an account?', switchAction: 'Sign in', switchMode: 'signin' },
-  artist: { eyebrow: 'For independent creatives', title: 'Join as an artist', description: 'Create your artist profile and start receiving commission requests.', submit: 'Create artist profile', switch: 'Already have an account?', switchAction: 'Sign in', switchMode: 'signin' }
+  signin: { eyebrow: 'Welcome back', title: 'Login to ViCom', description: 'Continue exploring artists and managing your commissions.', submit: 'Login', switch: 'New to ViCom?', switchAction: 'Create an account', switchMode: 'signup' },
+  signup: { eyebrow: 'Start creating', title: 'Create your account', description: 'Save artists and turn your next idea into a commission.', submit: 'Create account', switch: 'Already have an account?', switchAction: 'Login', switchMode: 'signin' },
+  artist: { eyebrow: 'For independent creatives', title: 'Join as an artist', description: 'Create your artist profile and start receiving commission requests.', submit: 'Create artist profile', switch: 'Already have an account?', switchAction: 'Login', switchMode: 'signin' }
 };
 
 let currentMode = new URLSearchParams(window.location.search).get('mode') || 'signin';
