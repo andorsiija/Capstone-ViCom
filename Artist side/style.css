@@ -264,7 +264,7 @@ a {
 }
 .commission {
   display:grid;
-  grid-template-columns:48px 1fr auto;
+  grid-template-columns:1fr auto;
   align-items:center;
   gap:15px;
   padding:18px 0;
@@ -359,7 +359,7 @@ a {
   margin:4px 0
 }
 .message-row small {
-  color:#a1b3a8197;
+  color:#a1b3a8;
   font-size:9px
 }
 .message-row i {
@@ -569,7 +569,7 @@ a {
     padding:20px
   }
 .commission {
-    grid-template-columns:42px 1fr
+  grid-template-columns:1fr
   }
 .client-art {
     width:42px;

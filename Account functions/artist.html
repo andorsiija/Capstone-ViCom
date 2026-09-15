@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="View an artist's ViCom profile and portfolio.">
+  <title>ViCom | Artist profile</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="artist.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" id="brand-link" href="../LandingPage/index.html" aria-label="ViCom home"><span class="brand-mark">V</span><span>ViCom</span></a>
+    <a class="back-link" id="back-link" href="../LandingPage/discover.html">Back to discover <span>↗</span></a>
+  </header>
+
+  <main class="artist-page">
+    <section class="artist-hero">
+      <div class="artist-avatar" id="artist-avatar">V</div>
+      <div>
+        <p class="eyebrow"><span></span> Independent artist</p>
+        <h1 id="artist-name">Loading profile...</h1>
+        <p class="specialty" id="artist-specialty"></p>
+        <p class="artist-intro">Original work made with care, clarity, and a point of view.</p>
+        <button class="commission-button" id="commission-button" type="button">Start a commission <span>↗</span></button>
+      </div>
+    </section>
+
+    <section class="portfolio" aria-labelledby="portfolio-title">
+      <div class="section-heading">
+        <div>
+            <p class="eyebrow">
+                <span>
+
+                </span> Selected work</p>
+                <h2 id="portfolio-title">The portfolio</h2>
+            </div>
+            <span class="work-count" id="work-count"></span>
+        </div>
+      <div class="portfolio-grid" id="portfolio-grid"></div>
+      <p class="empty-state" id="empty-state" hidden>This artist has not published work yet.</p>
+    </section>
+  </main>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="artist.js"></script>
+</body>
+</html>

@@ -1,5 +1,13 @@
 const uploads = [
-  
+  {
+    title: 'Brand, but human',
+    artist: 'Studio Sola',
+    artistId: 'artist_studio_sola',
+    detail: 'Warm visual identity system',
+    price: '$120',
+    category: 'Design',
+    style: 'upload-three'
+  }
 ];
 
 const grid = document.querySelector('#upload-grid');
@@ -37,8 +45,8 @@ async function renderUploads() {
   const visibleUploads = shuffled([...uploads, ...publishedUploads]).filter((upload) => activeCategory === 'all' || upload.category.toLowerCase() === activeCategory);
   grid.innerHTML = visibleUploads.map((upload) => `
     <article class="upload-card">
-      <div class="upload-image ${upload.style}"${upload.image ? ` style="background-image:url('${upload.image}')"` : ''}><span class="category">${upload.category}</span><button class="heart" type="button" aria-label="Save ${upload.title}" data-title="${upload.title}">♡</button></div>
-      <div class="upload-meta"><div><h3>${upload.title}</h3><p>by ${upload.artist} · ${upload.detail}</p></div><strong>from ${upload.price}</strong></div>
+      <div class="upload-image ${upload.style}"${upload.image ? ` style="background-image:url('${upload.image}')"` : ''}>${upload.artistId ? `<a class="artist-photo-link" href="../Account%20functions/artist.html?id=${encodeURIComponent(upload.artistId)}" aria-label="View ${upload.artist} profile"></a>` : ''}<span class="category">${upload.category}</span><button class="heart" type="button" aria-label="Save ${upload.title}" data-title="${upload.title}">♡</button></div>
+      <div class="upload-meta"><div><h3>${upload.title}</h3><p>by ${upload.artistId ? `<a class="artist-link" href="../Account%20functions/artist.html?id=${encodeURIComponent(upload.artistId)}">${upload.artist}</a>` : upload.artist} · ${upload.detail}</p></div><strong>from ${upload.price}</strong></div>
     </article>
   `).join('');
   empty.hidden = visibleUploads.length > 0;

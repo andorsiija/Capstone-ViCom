@@ -198,6 +198,16 @@ h1 em,h2 em {
   position:relative;
   overflow:hidden
 }
+.artist-photo-link {
+  position:absolute;
+  inset:0;
+  z-index:1;
+  cursor:pointer
+}
+.upload-image .category,
+.upload-image .heart {
+  z-index:2
+}
 .published-upload {
   background-position:center;
   background-size:cover;
@@ -326,6 +336,10 @@ h1 em,h2 em {
   color:#53675b;
   margin:0;
   line-height:1.4
+}
+.artist-link {
+  color:#3f8061;
+  font-weight:700
 }
 .upload-meta strong {
   font-size:12px;

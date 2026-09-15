@@ -127,4 +127,42 @@ if ($action === 'artworks') {
     respond(['artworks' => $statement->fetchAll()]);
 }
 
+if ($action === 'artist') {
+    $artistId = trim($_GET['id'] ?? '');
+    if (!$artistId) respond(['error' => 'Artist id is required.'], 422);
+
+    $columnCheck = $pdo->query("SHOW COLUMNS FROM users LIKE 'profile_views'");
+    if (!$columnCheck->fetch()) {
+        $pdo->exec('ALTER TABLE users ADD COLUMN profile_views INT UNSIGNED NOT NULL DEFAULT 0');
+    }
+
+    $viewStatement = $pdo->prepare("UPDATE users SET profile_views = profile_views + 1 WHERE id = ? AND role = 'artist'");
+    $viewStatement->execute([$artistId]);
+
+    $artistStatement = $pdo->prepare("SELECT id, name, specialty, role, profile_views AS profileViews FROM users WHERE id = ? AND role = 'artist' LIMIT 1");
+    $artistStatement->execute([$artistId]);
+    $artist = $artistStatement->fetch();
+    if (!$artist) respond(['error' => 'Artist not found.'], 404);
+
+    $artworkStatement = $pdo->prepare('SELECT id, artist_id AS artistId, title, detail, CONCAT("$", FORMAT(price, 2)) AS price, category, image, created_at AS createdAt FROM artworks WHERE artist_id = ? ORDER BY created_at DESC');
+    $artworkStatement->execute([$artistId]);
+    respond(['artist' => $artist, 'artworks' => $artworkStatement->fetchAll()]);
+}
+
+if ($action === 'artist_stats') {
+    $artistId = trim($_GET['id'] ?? '');
+    if (!$artistId) respond(['error' => 'Artist id is required.'], 422);
+
+    $columnCheck = $pdo->query("SHOW COLUMNS FROM users LIKE 'profile_views'");
+    if (!$columnCheck->fetch()) {
+        $pdo->exec('ALTER TABLE users ADD COLUMN profile_views INT UNSIGNED NOT NULL DEFAULT 0');
+    }
+
+    $statement = $pdo->prepare("SELECT profile_views AS profileViews FROM users WHERE id = ? AND role = 'artist' LIMIT 1");
+    $statement->execute([$artistId]);
+    $artist = $statement->fetch();
+    if (!$artist) respond(['error' => 'Artist not found.'], 404);
+    respond($artist);
+}
+
 respond(['error' => 'Unknown API action.'], 404);

@@ -311,6 +311,17 @@ h1 em,h2 em {
   background-size:cover;
   background-position:center
 }
+.published-upload {
+  background-color:#dcebe0
+}
+.art-link {
+  position:absolute;
+  inset:0;
+  z-index:1
+}
+.card-image .heart {
+  z-index:2
+}
 .card-one {
   background-image:url('https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=700&q=85')
 }

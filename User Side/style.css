@@ -251,19 +251,16 @@ h1 em,h2 em {
   background-position:center;
   position:relative
 }
-.photo-mara {
-  background-image:url('https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=700&q=85')
-}
-.photo-noah {
-  background-image:url('https://images.unsplash.com/photo-1577083288073-40892c0860a4?w=700&q=85')
-}
-.photo-ines {
-  background-image:url('https://images.unsplash.com/photo-1561214115-f2f134cc4912?w=700&q=85')
+.artist-photo-link {
+  position:absolute;
+  inset:0;
+  z-index:1
 }
 .save {
   position:absolute;
   right:13px;
   top:13px;
+  z-index:2;
   background:#eef5ef;
   width:32px;
   height:32px;
