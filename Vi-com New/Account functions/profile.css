@@ -1,0 +1,207 @@
+* {
+  box-sizing:border-box
+}
+body {
+  margin:0;
+  min-height:100vh;
+  background:#eef5ef;
+  color:#1d3027;
+  font:14px 'DM Sans',Arial,sans-serif
+}
+.site-header {
+  height:82px;
+  padding:0 7vw;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-bottom:1px solid #c7d8cc
+}
+.brand {
+  display:flex;
+  gap:9px;
+  align-items:center;
+  font-size:20px;
+  font-weight:700;
+  letter-spacing:-.04em;
+  color:inherit;
+  text-decoration:none
+}
+.brand-mark {
+  display:grid;
+  place-items:center;
+  width:30px;
+  height:30px;
+  background:#3f8061;
+  color:white;
+  border-radius:50% 45% 50% 42%;
+  font:19px 'Playfair Display',Georgia,serif;
+  transform:rotate(-10deg)
+}
+.back-link {
+  color:#53675b;
+  font-size:12px;
+  text-decoration:none
+}
+.back-link span {
+  color:#3f8061;
+  font-size:16px;
+  margin-left:7px
+}
+.profile-layout {
+  min-height:calc(100vh - 82px);
+  padding:75px 10.5vw;
+  display:grid;
+  grid-template-columns:1fr minmax(360px,470px);
+  gap:10vw;
+  align-items:center
+}
+.profile-intro {
+  max-width:520px
+}
+.eyebrow {
+  display:flex;
+  align-items:center;
+  gap:10px;
+  text-transform:uppercase;
+  letter-spacing:.13em;
+  font-size:10px;
+  font-weight:700;
+  margin:0 0 23px
+}
+.eyebrow span {
+  display:inline-block;
+  width:26px;
+  height:1px;
+  background:#3f8061
+}
+.profile-intro h1 {
+  font:600 clamp(50px,6vw,78px)/.98 'Playfair Display',Georgia,serif;
+  letter-spacing:-.055em;
+  margin:0 0 25px
+}
+.profile-intro h1 em {
+  color:#3f8061;
+  font-style:normal
+}
+.profile-intro>p:not(.eyebrow) {
+  max-width:360px;
+  line-height:1.7;
+  color:#53675b
+}
+.logout-link {
+  margin-top:42px;
+  border:0;
+  border-bottom:1px solid #1d3027;
+  background:none;
+  padding:0 0 7px;
+  font:12px 'DM Sans',Arial,sans-serif;
+  cursor:pointer
+}
+.profile-card {
+  background:#fbfdfb;
+  border:1px solid #c7d8cc;
+  padding:34px 36px
+}
+.profile-card>.eyebrow {
+  margin-bottom:13px
+}
+.profile-card h2 {
+  font:600 31px/1 'Playfair Display',Georgia,serif;
+  letter-spacing:-.05em;
+  margin:0 0 10px
+}
+.form-description {
+  color:#64776a;
+  font-size:12px;
+  line-height:1.5;
+  margin:0 0 25px
+}
+.field {
+  margin-bottom:16px
+}
+.field label {
+  display:block;
+  font-size:11px;
+  font-weight:700;
+  margin-bottom:7px
+}
+.field label small {
+  font-weight:400;
+  color:#64776a
+}
+.field input {
+  width:100%;
+  border:1px solid #c7d8cc;
+  background:#eef5ef;
+  padding:12px;
+  outline:0;
+  color:#1d3027;
+  font:13px 'DM Sans',Arial,sans-serif
+}
+.field input:focus {
+  border-color:#3f8061
+}
+.submit-button {
+  width:100%;
+  border:0;
+  background:#1d3027;
+  color:#eef5ef;
+  padding:14px 18px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-size:12px;
+  cursor:pointer
+}
+.submit-button span {
+  font-size:17px
+}
+.form-error {
+  min-height:18px;
+  color:#276043;
+  font-size:11px;
+  margin:0 0 4px
+}
+.toast {
+  position:fixed;
+  left:50%;
+  bottom:22px;
+  transform:translate(-50%,20px);
+  background:#1d3027;
+  color:white;
+  padding:13px 18px;
+  font-size:12px;
+  opacity:0;
+  transition:.25s;
+  pointer-events:none
+}
+.toast.show {
+  opacity:1;
+  transform:translate(-50%,0)
+}
+[hidden] {
+  display:none!important
+}
+@media(max-width:760px) {
+  .site-header {
+    height:70px;
+    padding:0 6vw
+  }
+.profile-layout {
+    min-height:calc(100vh - 70px);
+    display:block;
+    padding:55px 8vw
+  }
+.profile-intro {
+    margin-bottom:42px
+  }
+.profile-intro h1 {
+    font-size:50px
+  }
+.logout-link {
+    margin-top:28px
+  }
+.profile-card {
+    padding:26px 22px
+  }
+}
