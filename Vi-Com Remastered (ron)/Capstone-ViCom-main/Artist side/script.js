@@ -1,0 +1,208 @@
+const toast = document.querySelector('#toast');
+let timer;
+let loggedInArtist = null;
+
+function notify(message) {
+  toast.textContent = message;
+  toast.classList.add('show');
+  clearTimeout(timer);
+  timer = setTimeout(() => toast.classList.remove('show'), 2200);
+}
+
+function loadLoggedInArtist() {
+  try {
+    const session = JSON.parse(localStorage.getItem('vicom-session'));
+    const database = JSON.parse(localStorage.getItem('vicom-demo-database'));
+    loggedInArtist = database?.users?.find((item) => item.id === session?.userId || item.email === session?.email);
+
+    if (loggedInArtist?.name) {
+      document.querySelector('#artist-name').textContent = loggedInArtist.name;
+      document.querySelector('#artist-greeting').textContent = loggedInArtist.name;
+      document.querySelector('#artist-initials').textContent = loggedInArtist.name
+        .split(/\s+/)
+        .map((part) => part[0])
+        .join('')
+        .slice(0, 2)
+        .toUpperCase();
+    }
+  } catch (error) {
+    loggedInArtist = null;
+  }
+}
+
+function getDatabase() {
+  try {
+    return JSON.parse(localStorage.getItem('vicom-demo-database')) || { users: [], artworks: [] };
+  } catch (error) {
+    return { users: [], artworks: [] };
+  }
+}
+
+function getPortfolio() {
+  const database = getDatabase();
+  let portfolio = Array.isArray(database.artworks) ? database.artworks : [];
+
+  try {
+    const legacy = JSON.parse(localStorage.getItem('vicom-portfolio')) || [];
+    if (legacy.length > portfolio.length) portfolio = legacy;
+  } catch (error) {
+  }
+
+  if (portfolio.length !== database.artworks?.length) {
+    database.artworks = portfolio;
+    localStorage.setItem('vicom-demo-database', JSON.stringify(database));
+  }
+
+  return portfolio;
+}
+
+async function savePortfolio(work) {
+  const response = await fetch('../Account%20functions/api.php?action=create_artwork', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(work)
+  });
+  const result = await response.json();
+
+  if (!response.ok) {
+    throw new Error(result.error || 'Artwork could not be published.');
+  }
+
+  const database = getDatabase();
+  database.artworks = [work, ...getPortfolio()];
+  localStorage.setItem('vicom-demo-database', JSON.stringify(database));
+  localStorage.setItem('vicom-portfolio', JSON.stringify(database.artworks));
+}
+
+function downloadDatabase(database) {
+  const file = new Blob([JSON.stringify(database, null, 2)], { type: 'application/json' });
+  const link = document.createElement('a');
+  link.href = URL.createObjectURL(file);
+  link.download = 'database.json';
+  link.click();
+  URL.revokeObjectURL(link.href);
+}
+
+function renderPortfolio() {
+  const portfolio = loggedInArtist
+    ? getPortfolio().filter((work) => work.artistId === loggedInArtist.id)
+    : [];
+  const grid = document.querySelector('#portfolio-grid');
+  const empty = document.querySelector('#portfolio-empty');
+
+  grid.innerHTML = portfolio
+    .map((work) => `<div class="work" style="background-image:url('${work.image}')" title="${work.title}"></div>`)
+    .join('');
+  empty.hidden = portfolio.length > 0;
+}
+
+async function loadProfileViews() {
+  if (!loggedInArtist) return;
+
+  const profileViews = document.querySelector('#profile-views');
+  try {
+    const response = await fetch(`../Account%20functions/api.php?action=artist_stats&id=${encodeURIComponent(loggedInArtist.id)}`);
+    const result = await response.json();
+    if (!response.ok) throw new Error(result.error || 'Profile views unavailable.');
+    profileViews.textContent = Number(result.profileViews || 0).toLocaleString();
+  } catch (error) {
+    try {
+      const views = JSON.parse(localStorage.getItem('vicom-profile-views')) || {};
+      profileViews.textContent = Number(views[loggedInArtist.id] || 0).toLocaleString();
+    } catch (fallbackError) {
+      profileViews.textContent = '0';
+    }
+  }
+}
+
+function openWorkModal() {
+  const modal = document.querySelector('#work-modal');
+  modal.classList.add('open');
+  modal.setAttribute('aria-hidden', 'false');
+}
+
+function closeWorkModal() {
+  const modal = document.querySelector('#work-modal');
+  modal.classList.remove('open');
+  modal.setAttribute('aria-hidden', 'true');
+  document.querySelector('#work-error').textContent = '';
+}
+
+loadLoggedInArtist();
+renderPortfolio();
+loadProfileViews();
+
+document.querySelector('#notification').addEventListener('click', () => notify('You have 2 unread messages'));
+document.querySelector('#help').addEventListener('click', () => notify('Help center is opening soon'));
+document.querySelector('#view-profile').addEventListener('click', () => notify('Public profile preview is coming soon'));
+document.querySelector('#logout').addEventListener('click', () => {
+  localStorage.removeItem('vicom-session');
+  window.location.href = '../LandingPage/index.html';
+});
+document.querySelector('#all-commissions').addEventListener('click', () => notify('Showing your active commission queue'));
+document.querySelector('#open-messages').addEventListener('click', () => notify('Inbox opened'));
+document.querySelector('#add-work').addEventListener('click', openWorkModal);
+document.querySelector('#close-work').addEventListener('click', closeWorkModal);
+document.querySelector('#work-modal').addEventListener('click', (event) => {
+  if (event.target.id === 'work-modal') closeWorkModal();
+});
+
+document.querySelector('#work-form').addEventListener('submit', async (event) => {
+  event.preventDefault();
+
+  const imageFile = document.querySelector('#work-image').files[0];
+  const error = document.querySelector('#work-error');
+
+  if (!loggedInArtist) {
+    error.textContent = 'Sign in as an artist before publishing artwork.';
+    return;
+  }
+  if (!imageFile) {
+    error.textContent = 'Choose an artwork image to publish.';
+    return;
+  }
+
+  const reader = new FileReader();
+  reader.onload = async () => {
+    const work = {
+      id: `work_${Date.now()}`,
+      artistId: loggedInArtist.id,
+      artist: loggedInArtist.name,
+      title: document.querySelector('#work-title').value.trim(),
+      detail: document.querySelector('#work-detail').value.trim() || 'Original artwork',
+      price: Number(document.querySelector('#work-price').value),
+      category: document.querySelector('#work-category').value,
+      image: reader.result,
+      createdAt: new Date().toISOString()
+    };
+
+    if (!work.title || !work.price) {
+      error.textContent = 'Add a title and starting price.';
+      return;
+    }
+
+    try {
+      await savePortfolio(work);
+      renderPortfolio();
+      closeWorkModal();
+      event.target.reset();
+      notify('Artwork published to Discover');
+    } catch (requestError) {
+      error.textContent = requestError.message.includes('Failed to fetch')
+        ? 'Could not connect to XAMPP. Start Apache and open the project through localhost.'
+        : requestError.message;
+    }
+  };
+  reader.readAsDataURL(imageFile);
+});
+
+document.querySelectorAll('.status-button').forEach((button) => {
+  button.addEventListener('click', () => {
+    button.textContent = button.dataset.status;
+    button.classList.remove('progress-status');
+    button.classList.add('ready-status');
+    notify('Commission status updated');
+  });
+});
+
+document.querySelector('.mobile-nav').addEventListener('click', () => notify('Navigation is available on desktop view'));
