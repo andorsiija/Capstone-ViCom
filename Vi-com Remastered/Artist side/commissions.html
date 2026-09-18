@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ViCom Studio | Commissions</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="../commission.css">
+
+  <!-- push workspace content right of the fixed sidebar -->
+  <style>
+    body { display: flex; }
+    .workspace-area {
+      margin-left: 238px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    .workspace-header {
+      height: 64px;
+      border-bottom: 1px solid #2e4e3c;
+      padding: 0 32px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: #eef5ef;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .workspace-header h1 {
+      font: 600 20px 'Playfair Display', serif;
+      letter-spacing: -.03em;
+      margin: 0;
+      color: #1d3027;
+    }
+    .workspace-header p {
+      font-size: 12px;
+      color: #64776a;
+      margin: 0;
+    }
+    .wh-right { margin-left: auto; display: flex; align-items: center; gap: 12px; }
+
+    /* commission-page fills remaining space */
+    .commission-page {
+      flex: 1;
+      border-top: 1px solid #c7d8cc;
+    }
+
+    @media(max-width:780px) {
+      body { display: block; }
+      .workspace-area { margin-left: 0; }
+      .sidebar { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Artist sidebar (same as Artist side/index.html) -->
+  <aside class="sidebar">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">V</span>
+      <span>ViCom <small>STUDIO</small></span>
+    </a>
+    <nav>
+      <a href="discover.html"><span>🔍︎</span> Discover</a>
+    </nav>
+    <nav>
+      <p class="nav-label">Workspace</p>
+      <a href="index.html"><span>◈</span> Overview</a>
+      <a class="active" href="commissions.html"><span>✦</span> Commissions</a>
+      <a href="index.html#messages"><span>◇</span> Messages</a>
+      <a href="index.html#portfolio"><span>▧</span> Portfolio</a>
+      <p class="nav-label second">Manage</p>
+      <a href="index.html#earnings"><span>↗</span> Earnings</a>
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="mini-profile">
+        <span class="mini-avatar" id="artist-initials">--</span>
+        <div>
+          <strong id="artist-name">Artist</strong>
+          <small>Artist account</small>
+        </div>
+        <span>···</span>
+      </div>
+      <a class="profile-link" href="../Account%20functions/profile.html">Edit profile ↗</a>
+      <button class="logout-button" id="logout">Log out</button>
+    </div>
+  </aside>
+
+  <!-- main workspace -->
+  <div class="workspace-area">
+    <header class="workspace-header">
+      <div>
+        <h1>Commissions</h1>
+        <p>Upload work and move each commission through its stages</p>
+      </div>
+      <div class="wh-right">
+        <button class="icon-button" id="notification" aria-label="Notifications">◔</button>
+      </div>
+    </header>
+
+    <div class="commission-page">
+      <div class="comm-sidebar" id="comm-sidebar">
+        <p class="comm-empty" style="padding:20px 8px;color:#8aa396;font-size:13px">Loading…</p>
+      </div>
+      <div class="comm-main" id="comm-main"></div>
+    </div>
+
+    <footer style="min-height:70px;padding:0 32px;display:flex;align-items:center;gap:20px;font-size:11px;color:#64776a;border-top:1px solid #c7d8cc">
+      <a class="brand" href="index.html" style="color:#1d3027">
+        <span class="brand-mark">V</span>
+        <span>ViCom</span>
+      </a>
+      <span>Art for the wonderfully specific.</span>
+    </footer>
+  </div>
+
+  <div class="toast" id="toast" role="status"></div>
+
+  <script src="script.js"></script>
+  <script src="../commission.js"></script>
+  <script>
+    /* load artist info from session */
+    (function() {
+      try {
+        const sess = JSON.parse(localStorage.getItem('vicom-session') || 'null');
+        if (sess?.name) {
+          document.querySelector('#artist-name').textContent = sess.name;
+          document.querySelector('#artist-initials').textContent =
+            sess.name.split(/\s+/).map(p => p[0]).join('').slice(0, 2).toUpperCase();
+        }
+      } catch {}
+    })();
+
+    /* notification button uses live DB data */
+    document.querySelector('#notification')?.addEventListener('click', async () => {
+      const t = document.querySelector('#toast');
+      try {
+        const sess = JSON.parse(localStorage.getItem('vicom-session') || 'null');
+        if (!sess?.userId) { t.textContent = 'Sign in to see notifications'; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),2200); return; }
+        const res  = await fetch(`../Account%20functions/api.php?action=notifications&userId=${encodeURIComponent(sess.userId)}`);
+        const data = await res.json();
+        const list = data.notifications || [];
+        t.textContent = list.length ? '🔔 ' + list[0].text : 'No new notifications';
+        t.classList.add('show');
+        setTimeout(() => t.classList.remove('show'), 2600);
+        if (list.length) {
+          fetch('../Account%20functions/api.php?action=mark_notifications_read', {
+            method:'POST', headers:{'Content-Type':'application/json'},
+            body: JSON.stringify({userId: sess.userId})
+          });
+        }
+      } catch { t.textContent = 'Could not load notifications'; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),2200); }
+    });
+
+    document.querySelector('#logout')?.addEventListener('click', () => {
+      localStorage.removeItem('vicom-session');
+      window.location.href = '../LandingPage/index.html';
+    });
+
+    /* boot tracker as artist */
+    const tracker = new CommissionTracker({ role: 'artist' });
+    tracker.mount();
+  </script>
+</body>
+</html>
