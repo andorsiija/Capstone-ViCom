@@ -1,0 +1,404 @@
+* {
+  box-sizing: border-box
+}
+
+body {
+  margin: 0;
+  background: #eef5ef;
+  color: #1d3027;
+  font: 14px 'DM Sans', Arial, sans-serif
+}
+
+button {
+  border: 0;
+  background: none;
+  color: inherit;
+  cursor: pointer;
+  font: inherit
+}
+
+a {
+  color: inherit;
+  text-decoration: none
+}
+
+.site-header {
+  height: 76px;
+  padding: 0 6vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #c7d8cc
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -.05em
+}
+
+.brand small {
+  color: #64776a;
+  font-size: 9px;
+  letter-spacing: .12em
+}
+
+.brand-mark,
+.artist-avatar {
+  display: grid;
+  place-items: center;
+  border-radius: 50% 45% 50% 42%;
+  background: #3f8061;
+  color: #fff;
+  font-family: 'Playfair Display', Georgia, serif
+}
+
+.brand-mark {
+  width: 29px;
+  height: 29px;
+  font-size: 19px;
+  transform: rotate(-10deg)
+}
+
+.back-link {
+  color: #53675b;
+  font-size: 12px
+}
+
+.back-link span {
+  color: #3f8061;
+  font-size: 16px;
+  margin-left: 7px
+}
+
+.profile-page {
+  padding: 0 9vw 100px
+}
+
+.profile-hero {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 35px;
+  align-items: center;
+  padding: 78px 0 68px;
+  border-bottom: 1px solid #c7d8cc
+}
+
+.artist-avatar {
+  width: 150px;
+  height: 150px;
+  background: #d8b86a;
+  color: #1d3027;
+  font-size: 58px;
+  font-weight: 600
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 18px;
+  text-transform: uppercase;
+  letter-spacing: .13em;
+  font-size: 10px;
+  font-weight: 700
+}
+
+.eyebrow span {
+  width: 26px;
+  height: 1px;
+  background: #3f8061
+}
+
+h1,
+h2 {
+  font-family: 'Playfair Display', Georgia, serif;
+  letter-spacing: -.055em
+}
+
+h1 {
+  margin: 0 0 13px;
+  font-size: clamp(46px, 6vw, 76px);
+  line-height: .98
+}
+
+h2 {
+  margin: 0;
+  font-size: 42px;
+  line-height: 1
+}
+
+.specialty {
+  margin: 0 0 15px;
+  color: #3f8061;
+  font-weight: 700
+}
+
+.profile-description {
+  max-width: 600px;
+  margin: 0 0 20px;
+  color: #53675b;
+  line-height: 1.7
+}
+
+.social-link {
+  display: inline-block;
+  margin: 0 0 20px;
+  color: #3f8061;
+  border-bottom: 1px solid #3f8061;
+  padding-bottom: 5px;
+  font-size: 11px
+}
+
+.edit-button,
+.cancel-button {
+  color: #3f8061;
+  border-bottom: 1px solid #3f8061;
+  padding: 0 0 5px;
+  font-size: 11px
+}
+
+.edit-button {
+  display: block
+}
+
+.description-panel {
+  display: grid;
+  grid-template-columns: 38% 1fr;
+  gap: 10%;
+  padding: 58px 0;
+  border-bottom: 1px solid #c7d8cc
+}
+
+.description-form label {
+  display: block;
+  margin-bottom: 8px;
+  color: #53675b;
+  font-size: 11px
+}
+
+.description-form textarea {
+  display: block;
+  width: 100%;
+  resize: vertical;
+  border: 1px solid #c7d8cc;
+  background: #fff;
+  color: #1d3027;
+  padding: 13px;
+  outline: none;
+  font: 13px/1.6 'DM Sans', Arial, sans-serif
+}
+
+.description-form input {
+  display: block;
+  width: 100%;
+  margin-top: 16px;
+  border: 1px solid #c7d8cc;
+  background: #fff;
+  color: #1d3027;
+  padding: 13px;
+  outline: none;
+  font: 13px 'DM Sans', Arial, sans-serif
+}
+
+.form-error {
+  min-height: 17px;
+  margin: 8px 0 0;
+  color: #a33d3d;
+  font-size: 11px
+}
+
+.form-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px
+}
+
+.save-button {
+  background: #1d3027;
+  color: #eef5ef;
+  padding: 12px 15px;
+  font-size: 11px
+}
+
+.save-button span {
+  margin-left: 18px;
+  font-size: 15px
+}
+
+.portfolio {
+  padding-top: 70px
+}
+
+.section-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between
+}
+
+.section-heading h2 {
+  font-size: 49px
+}
+
+.work-count,
+.empty-state {
+  color: #64776a;
+  font-size: 11px
+}
+
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  margin-top: 30px
+}
+
+.work-image {
+  height: 320px;
+  background: #dcebe0 center/cover;
+  cursor: zoom-in
+}
+
+.work-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 13px
+}
+
+.work-meta h3 {
+  margin: 0 0 5px;
+  font: 21px 'Playfair Display', Georgia, serif
+}
+
+.work-meta p {
+  margin: 0;
+  color: #53675b;
+  font-size: 11px
+}
+
+.work-meta strong {
+  white-space: nowrap;
+  font-size: 11px
+}
+
+.empty-state {
+  margin-top: 30px
+}
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  display: none;
+  place-items: center;
+  padding: 40px;
+  background: rgba(29, 48, 39, .88)
+}
+
+.lightbox.open {
+  display: grid
+}
+
+.lightbox-image {
+  width: min(100%, 1000px);
+  height: min(85vh, 760px);
+  background: center/contain no-repeat
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 18px;
+  right: 25px;
+  color: #eef5ef;
+  font-size: 34px;
+  line-height: 1
+}
+
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 22px;
+  z-index: 12;
+  transform: translate(-50%, 20px);
+  background: #1d3027;
+  color: #fff;
+  padding: 13px 18px;
+  font-size: 12px;
+  opacity: 0;
+  transition: .25s
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translate(-50%, 0)
+}
+
+[hidden] {
+  display: none !important
+}
+
+@media(max-width:700px) {
+  .site-header {
+    height: 70px;
+    padding: 0 6vw
+  }
+
+  .profile-page {
+    padding: 0 8vw 75px
+  }
+
+  .profile-hero {
+    display: block;
+    padding: 55px 0 50px
+  }
+
+  .artist-avatar {
+    width: 105px;
+    height: 105px;
+    margin-bottom: 34px;
+    font-size: 42px
+  }
+
+  h1 {
+    font-size: 52px
+  }
+
+  .description-panel {
+    display: block;
+    padding: 45px 0
+  }
+
+  .description-form {
+    margin-top: 30px
+  }
+
+  .portfolio {
+    padding-top: 55px
+  }
+
+  .section-heading {
+    display: block
+  }
+
+  .section-heading h2 {
+    font-size: 39px
+  }
+
+  .work-count {
+    display: block;
+    margin-top: 10px
+  }
+
+  .portfolio-grid {
+    grid-template-columns: 1fr;
+    gap: 30px
+  }
+
+  .work-image {
+    height: 340px
+  }
+}

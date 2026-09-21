@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="View an artist's ViCom profile and portfolio.">
+  <title>ViCom | Artist profile</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="artist.css">
+  <link rel="stylesheet" href="../commission.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" id="brand-link" href= # aria-label="ViCom home"><span class="brand-mark">V</span><span>ViCom</span></a>
+    <a class="back-link" id="back-link" href="../User Side/discover.html">Back to discover <span>↗</span></a>
+  </header>
+
+  <main class="artist-page">
+    <section class="artist-hero">
+      <div class="artist-avatar" id="artist-avatar">V</div>
+      <div>
+        <p class="eyebrow"><span></span> Independent artist</p>
+        <h1 id="artist-name">Loading profile...</h1>
+        <p class="specialty" id="artist-specialty"></p>
+        <p class="artist-intro" id="artist-description">Original work made with care, clarity, and a point of view.</p>
+        <a class="social-link" id="artist-social-link" target="_blank" rel="noopener noreferrer" hidden>Visit social profile <span>↗</span></a>
+        <button class="commission-button" id="commission-button" type="button">Start a commission <span>↗</span></button>
+      </div>
+    </section>
+
+    <section class="portfolio" aria-labelledby="portfolio-title">
+      <div class="section-heading">
+        <div>
+            <p class="eyebrow">
+                <span>
+
+                </span> Selected work</p>
+                <h2 id="portfolio-title">The portfolio</h2>
+            </div>
+            <span class="work-count" id="work-count"></span>
+        </div>
+      <div class="portfolio-grid" id="portfolio-grid"></div>
+      <p class="empty-state" id="empty-state" hidden>This artist has not published work yet.</p>
+    </section>
+  </main>
+
+  <!-- Commission request modal -->
+  <div class="commission-modal-overlay" id="commission-modal-overlay">
+    <div class="commission-modal">
+      <button class="commission-modal-close" id="commission-modal-close">×</button>
+      <h2>Start a commission</h2>
+      <p>Tell <span id="modal-artist-name">the artist</span> what you have in mind.</p>
+      <label for="commission-title">Project title</label>
+      <input type="text" id="commission-title" placeholder="e.g. Character portrait, book cover…">
+      <label for="commission-brief">Brief</label>
+      <textarea id="commission-brief" placeholder="Describe your idea — style, mood, references, deadline…"></textarea>
+      <label for="commission-reference">Attach image reference</label>
+      <input type="file" id="commission-reference" accept="image/*">
+      <img id="commission-reference-preview" alt="Reference preview" hidden style="max-width:100%;max-height:180px;border-radius:12px;object-fit:cover;margin-top:8px;border:1px solid #dfe7e1;display:block;">
+      <div class="commission-modal-actions">
+        <button class="btn-primary" id="commission-submit">Send request ↗</button>
+        <button class="btn-secondary" id="commission-modal-cancel">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="image-lightbox" id="image-lightbox" aria-hidden="true">
+    <button class="image-lightbox-close" id="image-lightbox-close" type="button" aria-label="Close enlarged image">×</button>
+    <div class="image-lightbox-picture" id="image-lightbox-picture" role="img" aria-label="Enlarged portfolio artwork"></div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="artist.js"></script>
+</body>
+</html>

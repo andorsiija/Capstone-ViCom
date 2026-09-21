@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Edit your ViCom artist profile and view your public portfolio.">
+  <title>ViCom | Public profile</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="profile.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="ViCom studio home">
+      <span class="brand-mark">V</span>
+      <span>ViCom</span>
+    </a>
+    <a class="back-link" href="index.html">Back to workspace <span>↗</span></a>
+  </header>
+
+  <main class="profile-page">
+    <section class="profile-hero">
+      <div class="artist-avatar" id="artist-avatar">V</div>
+      <div class="hero-copy">
+        <p class="eyebrow"><span></span> Your public profile</p>
+        <h1 id="artist-name">Loading profile...</h1>
+        <p class="specialty" id="artist-specialty"></p>
+        <p class="profile-description" id="profile-description">Original work made with care, clarity, and a point of view.</p>
+        <a class="social-link" id="artist-social-link" target="_blank" rel="noopener noreferrer" hidden></a>
+        <button class="edit-button" id="edit-description" type="button">Edit description</button>
+      </div>
+    </section>
+
+    <section class="description-panel" id="description-panel" hidden>
+      <div>
+        <p class="eyebrow"><span></span> Profile details</p>
+        <h2>Tell clients what makes your work yours.</h2>
+      </div>
+      <div class="description-form">
+        <label for="description-input">Public description</label>
+        <textarea id="description-input" maxlength="500" rows="6" placeholder="Describe your style, process, or the kind of work you love making."></textarea>
+        <label for="social-link-input">Social media link</label>
+        <input id="social-link-input" type="url" maxlength="500" placeholder="https://instagram.com/yourname">
+        <p class="form-error" id="form-error" role="alert"></p>
+        <div class="form-actions">
+          <button class="save-button" id="save-description" type="button">Save description <span>↗</span></button>
+          <button class="cancel-button" id="cancel-description" type="button">Cancel</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="portfolio" aria-labelledby="portfolio-title">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow"><span></span> Selected work</p>
+          <h2 id="portfolio-title">The portfolio</h2>
+        </div>
+        <span class="work-count" id="work-count"></span>
+      </div>
+      <div class="portfolio-grid" id="portfolio-grid"></div>
+      <p class="empty-state" id="empty-state" hidden>Your published artwork will appear here.</p>
+    </section>
+  </main>
+
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lightbox-close" id="lightbox-close" type="button" aria-label="Close enlarged image">×</button>
+    <div class="lightbox-image" id="lightbox-image" role="img" aria-label="Enlarged portfolio artwork"></div>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="profile.js"></script>
+</body>
+</html>
